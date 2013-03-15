@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TANKTEST</title>
+    <style type="text/css">
+      .test_results {
+        font-family: sans-serif;
+      }
+      .test_results > table {
+        border: 1px solid black;
+      }
+      .true {
+        background-color: green;
+      }
+      .false {
+        background-color: red;
+      }
+    </style>
+    <script src="debug.js" type="text/javascript"></script>
+    <script src="matrix.js" type="text/javascript"></script>
+    <script src="matrix-test.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var tests = { "matrix_tests" : matrix_test_run }
+      window.onload = function() {
+        var keys = Object.keys(tests)
+        for (var i = 0; i < keys.length; i++) {
+          var result = tests[keys[i]]()
+          testResultTable(result)
+        }
+      }
+      var testResultTable = function(result) {
+        var keys = Object.keys(result)
+        var html = "<table><tr><td>name</td><td>result</td></tr>"
+        for (var i = 0; i < keys.length; i++) {
+          var key = keys[i]
+          html += "<tr><td>"+key+"</td><td class=\""+result[key]+"\">"+result[key]+"</td></tr>"
+        }
+        html += "</table>"
+        document.getElementById("test_results").innerHTML += html;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="test_results" id="test_results"></div>
+  </body>
+</html>
