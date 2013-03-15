@@ -39,10 +39,23 @@ Matrix4.Ortho = function(mat, left, right, bottom, top, near, far) {
     mat[15] = 1
 }
 
+Matrix4.Perspective = function(mat, fov, ar, near, far) {
+    var npf = near+far
+    var nmf = near-far
+    var ntf = near*far
+    for (var i = 0; i < 16; i++) {
+        mat[i] = 0
+    }
+    mat[0] = fov/ar
+    mat[5] = fov
+    mat[10] = npf/nmf
+    mat[11] = (2*ntf)/nmf
+    mat[14] = -1
+}
+
 Matrix4.Equals = function(one, two) {
     for (var i = 0; i < 16; i++) {
         if (one[i] !== two[i]) {
-            console.log(""+i+" "+one[i]+" "+two[i]);
             return false
         }
     }
