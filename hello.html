@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <script src="tankage.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    window.onload = function() {
+      tankage.Init(document.getElementById("tankage"))
+    }
+    </script>
+  </head>
   <body>
-    <p>hello</p>
+    <canvas id="tankage" width="800" height="600">
+      no canvas? fu
+    </canvas>
   </body>
 </html>
